@@ -34,7 +34,7 @@
  
                       <lightning:card footer="RentIt.com" title="{!prop.Furnished_Type__c}">
                                             <lightning:layoutItem size="12">
-                         <p>Maintainace: {!prop.Maintainance__c}</p>
+                         <p>Maintainace Fees: {!prop.Maintainance__c}</p>
                          <p>Rent: {!prop.Rent__c}</p>
                          <p>Owner: {!Property_Owner__c} </p>
                          
