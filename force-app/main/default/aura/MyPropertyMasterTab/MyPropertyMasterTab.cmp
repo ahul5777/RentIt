@@ -1,0 +1,41 @@
+<aura:component controller="PropertyDetails" implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+	<aura:attribute name="PropertyId" type="String"></aura:attribute>
+    <aura:attribute name="Property" type="Property__c"></aura:attribute>
+   
+     <aura:attribute name="PropertyFound" type="Boolean" default="false"></aura:attribute>
+   <aura:handler name="init" value="{!this}" action="{!c.getSelection}"></aura:handler>
+    <aura:method name="Reshuffle" action="{!c.getSelection}"></aura:method>
+    <lightning:tabset variant="scoped"  onselect="{!c.getSelection}">
+        <lightning:tab label="Property Details" id="1">
+           Lets Explore the property in detail!
+        </lightning:tab>
+        
+        
+         <lightning:tab label="Pricing Details" onactive="{!c.getSelection}"  >
+            <aura:if isTrue="{!v.PropertyFound}">
+          <div class="slds-p-around_medium" style="background-color:azure">
+             <c:PricingComponent Property="{!v.Property}" ></c:PricingComponent>
+              
+            </div>
+                </aura:if>
+        </lightning:tab>
+        <lightning:tab label="Owner Details" onactive="{!c.getSelection}">
+       <aura:if isTrue="{!v.PropertyFound}">
+            <div class="slds-p-around_medium" style="background-color:azure">
+            <c:MyPropertyOwner OwnerId="{!v.Property.Property_Owner__c}"></c:MyPropertyOwner>
+            </div>
+           </aura:if>
+         
+        </lightning:tab>
+            
+         <lightning:tab label="Property Video" onactive="{!c.getSelection}">
+             <aura:if isTrue="{!v.PropertyFound}">
+           <c:Video Property="{!v.Property}"></c:Video>
+             </aura:if>
+        </lightning:tab>
+    </lightning:tabset>
+    
+    
+    
+    
+</aura:component>

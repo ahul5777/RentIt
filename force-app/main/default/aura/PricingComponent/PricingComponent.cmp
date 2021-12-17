@@ -1,0 +1,52 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+	
+    <aura:attribute name="Property" type="Property__c"></aura:attribute>
+    <lightning:layout multipleRows="true">
+    <div style="margin-top:2%">
+        <lightning:formattedrichtext style="color:brown;font-weight:bold" value="{!v.Property.Name}"></lightning:formattedrichtext>
+     </div>
+        
+        <div class="slds-box slds-grid slds-wrap slds-p-around-small" style="margin-top:2%;width:100%">
+        
+        
+        <div class="slds-col">
+            
+            
+          
+        <lightning:layout multipleRows="true">
+            
+            <lightning:layoutItem padding="around-small">
+            
+            <div class="header-column">
+             <p class="field" title="Rental Value">Rental Value</p>
+              <p>{!v.Property.Rent__c}</p>
+                
+             </div>
+                            </lightning:layoutItem>
+            
+            
+            <lightning:layoutItem padding="around-small">
+              <div class="header-column">
+             <p class="field" title="Maintainace Value">Maintainace</p>
+              <p>{!v.Property.Maintainance__c}</p>
+                            </div>
+                 </lightning:layoutItem>
+
+            
+
+            
+            
+        </lightning:layout>
+         </div>
+          </div>
+    
+    
+    
+    
+    
+    </lightning:layout>
+    
+    
+    
+    
+</aura:component>

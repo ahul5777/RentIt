@@ -1,0 +1,149 @@
+<aura:component controller="PropertyDetails" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+	<aura:attribute name="OpenOwnerDetails" type="Boolean" default="false"></aura:attribute>
+    <aura:attribute name="OpenEnqDetails" type="Boolean" default="false"></aura:attribute>
+    <aura:attribute name="PropList" type="List"></aura:attribute> 
+    <aura:attribute name="CityName" type="String"></aura:attribute> 
+    <aura:attribute name="PropertyAvailable" type="boolean" ></aura:attribute>
+    <aura:attribute name="OwnerID" type="String" ></aura:attribute>
+     <aura:attribute name="PropID" type="String" ></aura:attribute>
+    <aura:attribute name="pageReference" type="Object"/>
+     <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:handler name="PassingValue" event="c:PassingValue" action="{!c.compCatch}"></aura:handler>
+    <aura:handler name="init" value="{!this}" action="{!c.ShowProp}"></aura:handler>
+    
+    <aura:if isTrue="{!v.PropertyAvailable}">
+        <lightning:layout multipleRows="true">
+         <aura:iteration items="{!v.PropList}" var="prop">
+        
+            <lightning:layoutItem size="6" padding="around-small">
+
+                <lightning:layout multipleRows="true">
+                    <div class="slds-box" style="width:100%;background-color:white">
+                <lightning:layout>
+                    
+                    
+                 <lightning:layoutItem  size="4" padding="around-small"  >
+                     
+                     <lightning:formattedRichText value="{!prop.Property_Images__c}"> </lightning:formattedRichText>
+                     
+                    </lightning:layoutItem>
+
+                     <lightning:layoutItem  size="8" padding="around-small"  >
+
+ 
+                      <lightning:card footer="RentIt.com" title="{!prop.Furnished_Type__c}">
+                                            <lightning:layoutItem size="12">
+                         <p>Maintainace: {!prop.Maintainance__c}</p>
+                         <p>Rent: {!prop.Rent__c}</p>
+                         <p>Owner: {!Property_Owner__c} </p>
+                         
+     
+                      </lightning:layoutItem>
+                          </lightning:card>
+                      
+                          
+                    
+                    </lightning:layoutItem>
+                                        
+                    
+                    
+                    
+                </lightning:layout>  
+                            <lightning:buttonGroup>
+                            <lightning:button label="Owner Details" variant="Success" value="{!prop.Property_Owner__c }" aura:id="get-value" onclick="{!c.ownerDetailsClick}" />
+                            <lightning:button label="Enquiry" variant="Success" value="{!prop.Id }" onclick="{!c.OpEnqClick}" />
+                            <lightning:button label="Property Details" variant="Success"  value="{!prop.Id }" onclick="{!c.OpTabClick}" />
+                        </lightning:buttonGroup>
+                        
+                        
+                
+                </div>
+                    
+                  
+                
+                </lightning:layout>
+              
+            </lightning:layoutItem>
+            
+        
+        
+      </aura:iteration>
+            </lightning:layout>
+    <aura:set attribute="else">
+        Not Found!
+        
+        </aura:set>
+    </aura:if>
+    Hii
+   {!v.CityName}
+    
+    
+   <!-- CHILD 1 -->
+    
+    <aura:if isTrue="{!v.OpenOwnerDetails}" >
+       
+    <div style="margin-top:5%">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <lightning:card title="Property Enquiry" iconName="action:new_note" >
+    
+         <lightning:buttonIcon class="slds-modal__close" iconName="utility:close"  variant="border-filled"  title="Close"  onclick="{!c.closeOwnerInfo}"/>
+             
+             <div class="slds-modal__content slds-p-around_medium" >
+             
+                 <c:MyPropertyOwner OwnerId="{!v.OwnerID}"></c:MyPropertyOwner>
+                 
+             </div>
+                         
+         </lightning:card>
+            
+     </header>
+            </div>
+        
+       
+        </section>
+        </div>
+
+    </aura:if>
+    
+    
+    
+    <!-- CHILD 2-->
+    
+    
+    <aura:if isTrue="{!v.OpenEnqDetails}" >
+       
+    <div style="margin-top:5%">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+         <lightning:card title="Property Owner Information" iconName="standard:people" >   
+         <lightning:buttonIcon class="slds-modal__close" iconName="utility:close"  variant="border-filled"  title="Close"  onclick="{!c.closeForm}"/>
+                          <div class="slds-modal__content slds-p-around_medium" >           
+                 <c:MyPropertyEnquiry PropertyId="{!v.PropID}"></c:MyPropertyEnquiry>
+              </div>
+      </lightning:card>
+        </header>
+            </div>
+        </section>
+        </div>
+        
+        
+    </aura:if>
+    
+    
+    
+    <!-- Property Detials-->
+    
+    
+    
+     
+   
+    
+    
+   
+    
+    
+</aura:component>

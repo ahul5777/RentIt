@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+<aura:attribute name="SelectedOption" Type="String"></aura:attribute>
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'Pune', 'value': 'Pune'},
+    {'label': 'Mumbai', 'value': 'Mumbai'},
+    {'label': 'Nasik', 'value': 'Nasik'},
+    ]"/>
+    <aura:registerEvent name="PassingValue" type="c:PassingValue"></aura:registerEvent>
+    
+    <lightning:card footer="Card Footer" title="Hello">
+        <lightning:layout multipleRows="true" horizontalAlign="center" >
+            
+         <lightning:layoutitem padding="around-small">
+         Select City:
+             </lightning:layoutitem>
+             <lightning:layoutitem padding="around-small">
+             <lightning:combobox name="City" label="Select City" value="SelectValue" onchange="{!c.getValue}" placeholder="Select Value" options="{! v.options }"  variant="label-hidden" />
+        </lightning:layoutitem>
+            <lightning:layoutitem padding="around-small">
+          <lightning:button variant="brand" label="Search" title="Search🔎" onclick="{! c.EventFire }" />
+             </lightning:layoutitem>
+        
+        </lightning:layout>
+        
+    </lightning:card>
+    
+    <c:PropertyList></c:PropertyList>
+    
+</aura:component>

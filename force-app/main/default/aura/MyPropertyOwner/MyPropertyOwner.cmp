@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="OwnerId" type="String"/>
+                <lightning:recordViewForm recordId="{!v.OwnerId}" objectApiName="Property_Owner__c">
+                    <lightning:layout>
+                <div class="slds-grid slds-gutters">
+                    <lightning:layoutItem size="4">
+                  <div class="slds-col image-1">
+                  <lightning:outputField fieldName="Owner_Photo__c" variant="label-hidden"/>
+                          </div>
+                        </lightning:layoutItem>
+                
+                    <lightning:layoutItem size="8">
+                    <div class="slds-box" style="width: 100%;background-color: white;font-size: large;text-align: justify;padding-left: 60px">
+                        
+                  <span class="Details"> Name Of the Owner:</span> <lightning:outputField fieldName="Owner_Name__c" variant="label-hidden"/>
+                  <div class="Details"> Email Address:      <lightning:outputField fieldName="Email__c" variant="label-hidden"/></div>
+                  <div class="Details"> Address:      <lightning:outputField fieldName="Owner_Address__c" variant="label-hidden"/>    </div>
+                    
+                        </div>
+                         </lightning:layoutItem>
+                
+                    
+                    
+                    </div>
+                </lightning:layout>
+                </lightning:recordViewForm>
+                    
+</aura:component>
